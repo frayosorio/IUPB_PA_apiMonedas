@@ -29,6 +29,8 @@
 	</scm>
 	<modules>
 		<module>dominio</module>
+		<module>infraestructura</module>
+		<module>core</module>
 	</modules>
 	<properties>
 		<java.version>25</java.version>
