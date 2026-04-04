@@ -31,6 +31,8 @@
 		<module>dominio</module>
 		<module>infraestructura</module>
 		<module>core</module>
+		<module>presentacion</module>
+		<module>aplicacion</module>
 	</modules>
 	<properties>
 		<java.version>25</java.version>
