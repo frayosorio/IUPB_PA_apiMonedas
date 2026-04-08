@@ -3,6 +3,7 @@ package monedas.api.presentacion.controladores;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import monedas.api.core.servicios.*;
@@ -25,6 +26,15 @@ public class MonedaControlador {
         return servicio.obtener(id);
     }
 
+    @PostMapping(value = "/")
+    public Moneda agregar(@RequestBody Moneda moneda){
+        return servicio.agregar(moneda);
+    }
+
+    @PutMapping(value = "/")
+    public Moneda modificar(@RequestBody Moneda moneda){
+        return servicio.modificar(moneda);
+    }
 
 
 }
