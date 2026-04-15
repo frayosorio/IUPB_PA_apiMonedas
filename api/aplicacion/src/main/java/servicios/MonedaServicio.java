@@ -5,11 +5,13 @@ import java.util.List;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import monedas.api.core.servicios.*;
 import monedas.api.dominio.entidades.*;
 import monedas.api.infraestructura.repositorios.*;
+
 
 @Service
 public class MonedaServicio implements IMonedaServicio {
@@ -27,7 +29,7 @@ public class MonedaServicio implements IMonedaServicio {
     }
 
     public List<Moneda> buscar(String nombre) {
-        return null;
+        return repositorio.buscar(nombre);
     }
 
     public Moneda buscarPorPais(String nombre) {
@@ -44,8 +46,17 @@ public class MonedaServicio implements IMonedaServicio {
         return monedaEncontrada.isEmpty() ? null : repositorio.save(moneda);
     }
 
-    public boolean eliminar(Long id) {
-        return false;
+    public boolean eliminar(int id) {
+        try {
+            var monedaEncontrada = repositorio.findById(id);
+            if (monedaEncontrada.isEmpty()) {
+                return false;
+            }
+            repositorio.deleteById(id);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     public List<Cambio> listarPorPeriodo(int idMoneda, LocalDate fecha1, LocalDate fecha2) {

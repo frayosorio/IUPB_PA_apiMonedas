@@ -36,5 +36,9 @@ public class MonedaControlador {
         return servicio.modificar(moneda);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public boolean eliminar(@PathVariable int id){
+        return servicio.eliminar(id);
+    }
 
 }

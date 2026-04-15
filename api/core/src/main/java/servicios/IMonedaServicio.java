@@ -19,7 +19,7 @@ public interface IMonedaServicio {
 
     public Moneda modificar(Moneda moneda);
 
-    public boolean eliminar(Long id);
+    public boolean eliminar(int id);
 	
 	public List<Cambio> listarPorPeriodo(int idMoneda, LocalDate fecha1, LocalDate fecha2);
 }
