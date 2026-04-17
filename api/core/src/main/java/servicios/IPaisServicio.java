@@ -1,19 +1,23 @@
 package monedas.api.core.servicios;
 
 import monedas.api.dominio.entidades.Pais;
+import monedas.api.dominio.dtos.CapitalDto;
 import java.util.List;
 
-public interface IPaisServicio {
 
-    public List<Pais> listar();
+ public interface IPaisServicio {
 
-    public Pais obtener(int id);
+     List<Pais> listar();
 
-    public List<Pais> buscar(String nombre);
+     Pais obtener(int id);
 
-    public Pais agregar(Pais pais);
+     List<Pais> buscar(String nombre);
 
-    public Pais modificar(Pais pais);
+     Pais agregar(Pais pais);
 
-    public boolean eliminar(int id);
+     Pais modificar(Pais pais);
+
+     boolean eliminar(int id);
+
+     CapitalDto getCapital(String nombre);
 }

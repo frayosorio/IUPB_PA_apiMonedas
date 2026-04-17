@@ -19,6 +19,9 @@ public class MonedaServicio implements IMonedaServicio {
     @Autowired
     private IMonedaRepositorio repositorio;
 
+    @Autowired
+    private ICambioRepositorio repositorioCambio;
+
     public List<Moneda> listar() {
         return repositorio.findAll();
     }
@@ -33,7 +36,7 @@ public class MonedaServicio implements IMonedaServicio {
     }
 
     public Moneda buscarPorPais(String nombre) {
-        return null;
+        return repositorio.buscarPorPais(nombre);
     }
 
     public Moneda agregar(Moneda moneda) {
@@ -59,8 +62,37 @@ public class MonedaServicio implements IMonedaServicio {
         }
     }
 
+     //********** Cambios  
+
+    public Cambio agregarCambio(Cambio cambio){
+        cambio.setId(0);
+        return repositorioCambio.save(cambio);
+    }
+
+    public Cambio modificarCambio(Cambio cambio){
+        var cambioEncontrado = repositorioCambio.findById(cambio.getId());
+        return cambioEncontrado.isEmpty() ? null : repositorioCambio.save(cambio);
+    }
+
+    public boolean eliminarCambio(int id){
+        try {
+            var cambioEncontrado = repositorioCambio.findById(id);
+            if (cambioEncontrado.isEmpty()) {
+                return false;
+            }
+            repositorioCambio.deleteById(id);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public List<Cambio> listarPorMoneda(int idMoneda) {
+        return repositorioCambio.listarPorMoneda(idMoneda);
+    }
+
     public List<Cambio> listarPorPeriodo(int idMoneda, LocalDate fecha1, LocalDate fecha2) {
-        return null;
+        return repositorioCambio.listarPorPeriodo(idMoneda, fecha1, fecha2);
     }
 
 }

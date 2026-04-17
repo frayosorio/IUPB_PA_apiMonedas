@@ -7,19 +7,30 @@ import java.time.LocalDate;
 
 public interface IMonedaServicio {
 
-    public List<Moneda> listar();
+    List<Moneda> listar();
 
-    public Moneda obtener(int id);
+    Moneda obtener(int id);
 
-    public List<Moneda> buscar(String nombre);
+    List<Moneda> buscar(String nombre);
 
-    public Moneda buscarPorPais(String nombre);
+    Moneda buscarPorPais(String nombre);
 
-    public Moneda agregar(Moneda moneda);
+    Moneda agregar(Moneda moneda);
 
-    public Moneda modificar(Moneda moneda);
+    Moneda modificar(Moneda moneda);
 
-    public boolean eliminar(int id);
+    boolean eliminar(int id);
+
+    //********** Cambios  
+
+    Cambio agregarCambio(Cambio moneda);
+
+    Cambio modificarCambio(Cambio moneda);
+
+    boolean eliminarCambio(int id);
+
+    List<Cambio> listarPorMoneda(int idMoneda);
 	
-	public List<Cambio> listarPorPeriodo(int idMoneda, LocalDate fecha1, LocalDate fecha2);
+	List<Cambio> listarPorPeriodo(int idMoneda, LocalDate fecha1, LocalDate fecha2);
+    
 }

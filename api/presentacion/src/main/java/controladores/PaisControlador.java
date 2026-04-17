@@ -1,5 +1,7 @@
 package monedas.api.aplicacion.presentacion;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,47 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-import monedas.api.dominio.dtos.*;
 import monedas.api.dominio.entidades.*;
+import monedas.api.dominio.dtos.*;
 import monedas.api.core.servicios.*;
 
 @RestController
-@RequestMapping("/api/usuarios")
-public class UsuarioControlador {
+@RequestMapping("/api/paises")
+public class PaisControlador {
 
     @Autowired
-    private IUsuarioServicio servicio;
+    private IPaisServicio servicio;
 
-    @GetMapping(value = "/login/{nombreUsuario}/{clave}")
-    public UsuarioLoginDto login(@PathVariable String nombreUsuario, @PathVariable String clave) {
-        return servicio.login(nombreUsuario, clave);
-    }
-
-   @GetMapping(value = "/")
-    public List<Usuario> listar() {
+    @GetMapping(value = "/")
+    public List<Pais> listar() {
         return servicio.listar();
     }
 
     @GetMapping(value = "/obtener/{id}")
-    public Usuario obtener(@PathVariable int id) {
+    public Pais obtener(@PathVariable int id) {
         return servicio.obtener(id);
     }
 
     @RequestMapping(value = "/buscar/{nombre}", method = RequestMethod.GET)
-    public List<Usuario> buscar(@PathVariable String nombre) {
+    public List<Pais> buscar(@PathVariable String nombre) {
         return servicio.buscar(nombre);
     }
 
     @PostMapping(value = "/")
-    public Usuario crear(@RequestBody Usuario usuario) {
-        return servicio.agregar(usuario);
+    public Pais crear(@RequestBody Pais pais) {
+        return servicio.agregar(pais);
     }
 
     @PutMapping(value = "/")
-    public Usuario actualizar(@RequestBody Usuario usuario) {
-        return servicio.modificar(usuario);
+    public Pais actualizar(@RequestBody Pais pais) {
+        return servicio.modificar(pais);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -59,4 +54,9 @@ public class UsuarioControlador {
         return servicio.eliminar(id);
     }
 
+
+    @GetMapping(value = "/capital/{pais}")
+    public CapitalDto getCapital(@PathVariable String pais) {
+        return servicio.getCapital(pais);
+    }
 }

@@ -64,8 +64,8 @@ public class UsuarioServicio implements IUsuarioServicio {
 
     public boolean eliminar(int id) {
         try {
-            var monedaEncontrada = repositorio.findById(id);
-            if (monedaEncontrada.isEmpty()) {
+            var usuarioEncontrado = repositorio.findById(id);
+            if (usuarioEncontrado.isEmpty()) {
                 return false;
             }
             repositorio.deleteById(id);
